@@ -1,0 +1,16 @@
+{
+  "name": "Analgesic",
+  "description": "A pure web, without headaches.",
+  "version": "0.1",
+  "manifest_version": 2,
+  "icons": {
+    "16": "images/16.png",
+    "48": "images/48.png",
+    "128": "images/128.png"
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["src/index.js"],
+    "run_at": "document_start"
+  }]
+}
