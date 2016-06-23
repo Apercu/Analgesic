@@ -1,7 +1,7 @@
 {
   "name": "Analgesic",
   "description": "A pure web, without headaches.",
-  "version": "0.1",
+  "version": "0.2",
   "manifest_version": 2,
   "icons": {
     "16": "images/16.png",

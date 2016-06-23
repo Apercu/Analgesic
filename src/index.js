@@ -15,27 +15,12 @@ const blackSelector = blackList.reduce((end, cur, i) => end + `${i ? ', ' : ''}a
 
 const blackMethod = () => {
   const links = document.querySelectorAll(blackSelector)
+
   for (let i = 0; i < links.length; ++i) {
-
-    const oldLink = links[i]
-
-    // No parent: remove useless attributes, and hope nothing will alter the element.
-    if (!oldLink.parentNode) {
-      blackList.forEach(attr => oldLink.removeAttribute(attr))
-      continue
-    }
-
-    // If we have however, recreate a new element and only keep needed things.
-    const oldStyle = oldLink.getAttribute('style')
-    const newLink = document.createElement('a')
-    newLink.setAttribute('href', oldLink.href)
-    if (oldLink.className) { newLink.setAttribute('class', oldLink.className) }
-    if (oldStyle) { newLink.setAttribute('style', oldStyle) }
-    whiteList.forEach(attr => oldLink[attr] && newLink.setAttribute(attr, oldLink[attr]))
-
-    oldLink.childNodes.forEach(node => newLink.appendChild(node))
-    oldLink.parentNode.replaceChild(newLink, oldLink)
-
+    const link = links[i]
+    blackList.forEach(attr => link.removeAttribute(attr))
+    link.setAttribute('true-href', link.href)
+    link.setAttribute('onclick', 'this.href=this.getAttribute("true-href")')
   }
 }
 
